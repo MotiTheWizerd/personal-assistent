@@ -1,0 +1,18 @@
+[project]
+name = "cpu-agent"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Moti Elmakyes",email = "moti.elmakyes@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk (>=1.6.1,<2.0.0)",
+    "rich (>=14.0.0,<15.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
