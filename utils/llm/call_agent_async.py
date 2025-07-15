@@ -33,7 +33,9 @@ async def call_agent_async(runner, user_id, session_id, message):
         if not console.is_terminal or console.is_jupyter:
             thinking_task = asyncio.create_task(display_thinking_indicator())
         else:
-            status = console.status("[bold blue]🧠 Agent thinking...", spinner="dots")
+          
+            agent_name = getattr(runner.agent, 'name', 'Agent')
+            status = console.status(f"[bold blue]🧠 {agent_name} thinking...", spinner="dots")
             status.start()
         
         async for event in runner.run_async(

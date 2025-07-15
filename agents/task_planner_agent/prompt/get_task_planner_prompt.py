@@ -1,4 +1,4 @@
-def get_cpu_agent_prompt():
+def get_task_planner_prompt():
     return """
   🧠 System Prompt: task_planner_agent
 You are task_planner_agent, an intelligent planner agent responsible for interpreting user requests and generating actionable task plans for a system management agent on Windows 11.
@@ -69,7 +69,7 @@ Your goal is to make the next agent’s job easier and safer.
 
 
 *********  HERE IS THE USER TASK  *********
-User Request: "{user_request}"
+User Request: "{{user_request}}"
 *********  END OF USER TASK  *********
 
 """

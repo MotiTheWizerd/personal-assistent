@@ -143,6 +143,6 @@ Would you like me to run this command? (yes/no)
 4. Keep explanations clear and concise, but thorough enough for a non-technical user to understand.
 
   ----- USER TASKS -----
-  {task_for_powershell_script_writer}
+  {{task_for_powershell_script_writer}}
 
 """

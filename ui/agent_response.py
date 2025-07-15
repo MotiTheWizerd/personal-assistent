@@ -159,7 +159,25 @@ async def process_agent_response(event):
         return None
     
     # Display the response directly without using layout to prevent cutting off
-    console.print(Text("\n📋 Agent Response"), new_line_start=True)
+    # Debug log to see event structure
+    print("Event debug info:")
+    print("Author:", event.author)
+    
+    
+    # Get agent name - try different attributes that might contain it
+    agent_name = (
+        getattr(event.author, 'name', None) or  # try author.name
+        getattr(event, 'agent_name', None) or    # try event.agent_name
+        str(event.author) if event.author else   # try string representation of author
+        'Agent'                                  # fallback
+    )
+    
+    # Add (Final) tag if this is a final response
+    response_label = f"{agent_name} Response"
+    if event.is_final_response():
+        response_label += " (Final)"
+    
+    console.print(Text(f"\n📋 {response_label}"), new_line_start=True)
     console.print(content, overflow="fold", no_wrap=False, crop=False)
     
     # Return extracted text if this was the final response
@@ -188,7 +206,8 @@ async def display_thinking_indicator():
     if _active_live_display is not None:
         return
         
-    spinner = Spinner("dots", "🧠 Thinking")
+    # Default to generic "Agent" text for thinking indicator
+    spinner = Spinner("dots", "🧠 Agent thinking")
     try:
         # Ensure any existing display is stopped
         stop_active_live_display()
